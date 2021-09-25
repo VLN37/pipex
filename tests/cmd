@@ -1,0 +1,1 @@
+< file1 grep world | cat >> file2

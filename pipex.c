@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 16:38:37 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/26 19:01:26 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ char	***parse_commands(int argc, char **argv, char ***cmds)
 	return (cmds);
 }
 
-char **parse_path(char **envp)
+char	**parse_path(char **envp)
 {
-	int	i;
-	char **ret;
-	i = 0;
+	int		i;
+	char	**ret;
 
+	i = 0;
 	while (envp)
 	{
 		if (!ft_strncmp(envp[i], "PATH", 4))
@@ -43,13 +43,82 @@ char **parse_path(char **envp)
 	return (NULL);
 }
 
+char	*test_access(char **path, char *cmd)
+{
+	int		i;
+	char	*bin;
+	char	*cmd2;
+
+	i = 1;
+	while (path[i])
+	{
+		cmd2 = ft_strjoin("/", cmd);
+		bin = ft_strjoin(path[i++], cmd2);
+		free(cmd2);
+		if (!access(bin, X_OK))
+			return (bin);
+		else
+			free(bin);
+	}
+	return (NULL);
+}
+
+char	**parse_access(char **path, char ***cmd, int cmd_count)
+{
+	int		i;
+	int		j;
+	char	**accesspath;
+	char	*bin;
+
+	accesspath = (char **)malloc((cmd_count + 1) * sizeof(char *));
+	i = 0;
+	j = 0;
+	while (cmd[i])
+	{
+		accesspath[i] = test_access(path, cmd[i][0]);
+		if (!accesspath[i])
+			return (NULL); //handle errors
+		++i;
+	}
+	accesspath[i] = NULL;
+	return (accesspath);
+}
+
+void	debug(char ***cmds, char **path, char **accesspath)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+
+	printf("\n============ PATH ============\n\n");
+	j = 0;
+	while (path[j])
+		printf("%s\n", path[j++]);
+	printf("\n============ ACCESS ============\n\n");
+	i = -1;
+	while (cmds[++i])
+		printf("Command: %s\nAccess: %s\n", cmds[i][0], accesspath[i]);
+	printf("\n============ COMMANDS ============\n\n");
+	k = 0;
+	l = 0;
+	while (cmds[k])
+	{
+		while (cmds[k][l])
+			printf("%s ", cmds[k][l++]);
+		k++;
+		l = 0;
+		printf("\n");
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
 	data.cmds = parse_commands(argc, argv, data.cmds);
 	data.path = parse_path(envp);
-	if (!data.path)
-		return (1);
-
+	data.accesspath = parse_access(data.path, data.cmds, argc - 3);
+	if (DEBUG)
+		debug(data.cmds, data.path, data.accesspath);
 }

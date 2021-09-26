@@ -6,13 +6,14 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 19:01:26 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/26 20:18:41 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
+// cmd1 << <LIMITER> | <cmd2> >> outfile ????????
 char	***parse_commands(int argc, char **argv, char ***cmds)
 {
 	int	i;
@@ -91,7 +92,7 @@ void	debug(char ***cmds, char **path, char **accesspath)
 	int	k;
 	int	l;
 
-	printf("\n============ PATH ============\n\n");
+	printf("\n============= PATH =============\n\n");
 	j = 0;
 	while (path[j])
 		printf("%s\n", path[j++]);
@@ -99,7 +100,7 @@ void	debug(char ***cmds, char **path, char **accesspath)
 	i = -1;
 	while (cmds[++i])
 		printf("Command: %s\nAccess: %s\n", cmds[i][0], accesspath[i]);
-	printf("\n============ COMMANDS ============\n\n");
+	printf("\n=========== COMMANDS ===========\n\n");
 	k = 0;
 	l = 0;
 	while (cmds[k])
@@ -112,6 +113,33 @@ void	debug(char ***cmds, char **path, char **accesspath)
 	}
 }
 
+
+void cleanup(t_data data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (data.cmds[i])
+	{
+		while(data.cmds[i][j])
+			free(data.cmds[i][j++]);
+		free(data.cmds[i]);
+		++i;
+		j = 0;
+	}
+	i = 0;
+	while (data.path[i])
+		free(data.path[i++]);
+	i = 0;
+	while (data.accesspath[i])
+		free(data.accesspath[i++]);
+	free(data.cmds);
+	free(data.path);
+	free(data.accesspath);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
@@ -121,4 +149,5 @@ int	main(int argc, char **argv, char **envp)
 	data.accesspath = parse_access(data.path, data.cmds, argc - 3);
 	if (DEBUG)
 		debug(data.cmds, data.path, data.accesspath);
+	cleanup(data);
 }

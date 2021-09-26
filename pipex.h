@@ -6,13 +6,16 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 17:40:50 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/26 20:46:30 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-# define DEBUG 1
+
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
 
 # include <stdio.h>
 

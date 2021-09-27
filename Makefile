@@ -1,17 +1,36 @@
 DIR		= clang -C../tests
+CC		= clang
+CFLAGS	= -Wall -Wextra -Werror
+NAME	= pipex
+RM		= rm -f
+OBJ		= $(SRCS:.c=.o)
+SRCS	= pipex.c \
+		  pipex_parse.c \
 
-pipex:
-	clang pipex.c libft.a -fsanitize=address -g3
-	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
+all:	$(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) libft.a -o $(NAME)
+
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re:		fclean all
 
 debug:
-	clang pipex.c libft.a -D DEBUG=3
-	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
+	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME) -D DEBUG=1
+	./pipex file1 "grep reprehen" "tr ' ' '\n'" file2
 
 runf:
-	clang pipex.c libft.a -fsanitize=address -g3
-	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
+	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME) -fsanitize=address -g3
+	./pipex file1 "grep reprehen" "tr ' ' '\n'" file2
 
 runv:
-	clang pipex.c libft.a
-	valgrind ./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
+	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME)
+	valgrind ./pipex file1 "grep reprehen" "tr ' ' '\n'" file2

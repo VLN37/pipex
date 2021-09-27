@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 20:46:30 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/26 21:00:14 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ typedef struct s_data
 	char	**path;
 	char	***cmds;
 }	t_data;
+
+t_data parser(int argc, char **argv, char **envp, t_data data);
 
 #endif

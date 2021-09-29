@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:53:38 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:56:55 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	cleanup(t_data data)
 	while (data.accesspath[i])
 		free(data.accesspath[i++]);
 	i = 0;
-	while(data.new_argv[i])
+	while (data.new_argv[i])
 		free(data.new_argv[i++]);
 	free(data.new_argv);
 	free(data.cmds);

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:25:30 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:56:40 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	***parse_commands(int argc, char **argv, char ***cmds)
 	j = 0;
 	while (cmds[i])
 	{
-		while(cmds[i][j])
+		while (cmds[i][j])
 		{
 			if (!ft_strncmp(cmds[i][j], NEWPAT2, 18))
 				cmds[i][j] = str_replace(cmds[i][j], NEWPAT2, OLDPAT2);

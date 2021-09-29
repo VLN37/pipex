@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:49:12 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:52:05 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:56:59 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	validate_envp(char **envp)
 	i = 0;
 	if (!envp)
 		return (0);
-	while(envp[i])
+	while (envp[i])
 	{
 		if (!ft_strncmp(envp[i++], "PATH", 4))
 			return (1);

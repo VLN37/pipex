@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:54:15 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:56:24 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,38 +33,36 @@ void	exec(t_data data, char **envp)
 				close(data.fd[0]);
 			execve(data.accesspath[i], data.cmds[i], envp);
 		}
-			wait(NULL);
-			close(data.fd[1]);
-			data.file_in = data.fd[0];
-			i++;
+		wait(NULL);
+		close(data.fd[1]);
+		data.file_in = data.fd[0];
+		i++;
 	}
 }
 
-char **alloc_argv(int argc, char **argv)
+char	**alloc_argv(int argc, char **argv)
 {
-	int	i;
-	int	j;
-	char **new_argv;
+	int		i;
+	int		j;
+	char	**new_argv;
 
 	i = -1;
 	j = -1;
 	new_argv = (char **)malloc(sizeof(char *) * argc - 3);
-	while(++i < argc - 3)
+	while (++i < argc - 3)
 		new_argv[i] = ft_strdup(argv[i + 2]);
 	i = -1;
-	while(++i < argc - 3)
+	while (++i < argc - 3)
 		new_argv[i] = str_replace_all(new_argv[i], OLDPAT, NEWPAT);
 	return (new_argv);
 }
-
-
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
 	setbuf(stdout, NULL);
-	if(!validation(argc, envp))
+	if (!validation(argc, envp))
 		return (1);
 	data.file_in = open(argv[1], O_RDWR);
 	data.file_out = open(argv[argc - 1], O_RDWR);

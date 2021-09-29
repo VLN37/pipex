@@ -6,7 +6,8 @@ RM		= rm -f
 OBJ		= $(SRCS:.c=.o)
 SRCS	= pipex.c \
 		  pipex_parse.c \
-		  pipex_validation.c
+		  pipex_validation.c \
+		  pipex_utils.c
 
 all:	$(NAME)
 

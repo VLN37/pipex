@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:51:16 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:53:33 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ typedef struct s_data
 
 t_data	parser(int argc, char **argv, char **envp, t_data data);
 int		validation(int argc, char **envp);
+void	debug(t_data data, int argc, char **argv);
+void	cleanup(t_data data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 03:11:14 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:25:30 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static char	***parse_commands(int argc, char **argv, char ***cmds)
 	while (++i < argc - 3)
 		cmds[i] = ft_split(argv[i], ' ');
 	cmds[i] = NULL;
-
 	i = 0;
 	j = 0;
 	while (cmds[i])

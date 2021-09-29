@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 02:58:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 04:51:46 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	cleanup(t_data data)
 	{
 		while (data.cmds[i][j])
 			free(data.cmds[i][j++]);
-		free(data.cmds[i]);
-		++i;
+		free(data.cmds[i++]);
 		j = 0;
 	}
 	i = 0;
@@ -63,6 +62,10 @@ void	cleanup(t_data data)
 	i = 0;
 	while (data.accesspath[i])
 		free(data.accesspath[i++]);
+	i = 0;
+	while(data.new_argv[i])
+		free(data.new_argv[i++]);
+	free(data.new_argv);
 	free(data.cmds);
 	free(data.path);
 	free(data.accesspath);
@@ -112,11 +115,15 @@ char **alloc_argv(int argc, char **argv)
 	return (new_argv);
 }
 
+
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
 	setbuf(stdout, NULL);
+	if(!validation(argc, envp))
+		return (1);
 	data.file_in = open(argv[1], O_RDWR);
 	data.file_out = open(argv[argc - 1], O_RDWR);
 	data.new_argv = alloc_argv(argc, argv);

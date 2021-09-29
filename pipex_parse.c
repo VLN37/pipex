@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 21:12:37 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/28 03:59:40 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ static char	*test_access(char **path, char *cmd)
 static char	**parse_access(char **path, char ***cmd, int cmd_count)
 {
 	int		i;
-	int		j;
 	char	**accesspath;
 
 	accesspath = (char **)malloc((cmd_count + 1) * sizeof(char *));
 	i = 0;
-	j = 0;
 	while (cmd[i])
 	{
 		accesspath[i] = test_access(path, cmd[i][0]);

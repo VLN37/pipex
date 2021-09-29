@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/26 21:00:14 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/28 02:35:59 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data
 {
 	int		file_in;
 	int		file_out;
-	int		pipefd[2];
+	int		fd[2];
 	int		pid;
 	char	**accesspath;
 	char	**path;

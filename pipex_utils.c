@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:56:55 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 05:59:47 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	debug(t_data data, int argc, char **argv)
 	}
 }
 
-void	cleanup(t_data data)
+void	free_allocs(t_data data)
 {
 	int	i;
 	int	j;
@@ -69,4 +69,14 @@ void	cleanup(t_data data)
 	free(data.cmds);
 	free(data.path);
 	free(data.accesspath);
+}
+void	cleanup(t_data data, int iserror)
+{
+	free_allocs(data);
+	if (iserror)
+	{
+		ft_putstr_fd(strerror(errno), 2);
+		exit(1);
+	}
+	exit(0);
 }

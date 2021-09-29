@@ -31,7 +31,7 @@ debug:
 
 run:
 	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME)
-	./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
+	./pipex file1 "tr a ' '" "tr ' ' x" file2
 #	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
 
 runf:

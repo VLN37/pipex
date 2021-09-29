@@ -34,8 +34,8 @@ run:
 
 runf:
 	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME) -fsanitize=address -g3
-	./pipex file1 "grep reprehen" "tr ' ' '\n'" file2
+	./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
 
 runv:
 	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME)
-	valgrind ./pipex file1 "grep reprehen" "tr ' ' '\n'" file2
+	valgrind ./pipex file1 "tr a ' '" "tr ' ' 'x'" file2

@@ -6,33 +6,37 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/28 09:29:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/09/29 02:02:30 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-void	debug(char ***cmds, char **path, char **accesspath)
+void	debug(t_data data, int argc, char **argv)
 {
 	int	i;
 	int	j;
 
 	printf("\n============= PATH =============\n\n");
 	i = 0;
-	while (path[i])
-		printf("%s\n", path[i++]);
+	while (data.path[i])
+		printf("%s\n", data.path[i++]);
+	printf("\n============= ARGV =============\n\n");
+	i = 0;
+	while (++i < argc)
+		printf("argv[%d] %s\n", i, argv[i]);
 	printf("\n============ ACCESS ============\n\n");
 	i = -1;
-	while (cmds[++i])
-		printf("Command: %s\nAccess: %s\n", cmds[i][0], accesspath[i]);
+	while (data.cmds[++i])
+		printf("Cmd: %s\nAccess: %s\n", data.cmds[i][0], data.accesspath[i]);
 	printf("\n=========== COMMANDS ===========\n\n");
 	i = 0;
 	j = 0;
-	while (cmds[i])
+	while (data.cmds[i])
 	{
-		while (cmds[i][j])
-			printf("%s ", cmds[i][j++]);
+		while (data.cmds[i][j])
+			printf("%s ", data.cmds[i][j++]);
 		i++;
 		j = 0;
 		printf("\n");
@@ -70,9 +74,7 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	setbuf(stdout, NULL);
-	int j = -1;
-	while (++j < argc)
-		printf("argv[%d] %s\n", j, argv[j]);
+
 	data.file_in = open(argv[1], O_RDWR);
 	data.file_out = open(argv[argc - 1], O_RDWR);
 	data = parser(argc, argv, envp, data);
@@ -101,7 +103,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 	}
 	if (DEBUG)
-		debug(data.cmds, data.path, data.accesspath);
+		debug(data, argc, argv);
 	cleanup(data);
 }
 

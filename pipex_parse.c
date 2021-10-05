@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 04:56:40 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/03 14:18:16 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static char	*test_access(char **path, char *cmd)
 	return (NULL);
 }
 
-//handle errors
+//handle errors on line 92
 static char	**parse_access(char **path, char ***cmd, int cmd_count)
 {
 	int		i;

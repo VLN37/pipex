@@ -1,6 +1,6 @@
 DIR		= clang -C../tests
 CC		= clang
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g3
 NAME	= pipex
 RM		= rm -f
 OBJ		= $(SRCS:.c=.o)
@@ -28,6 +28,10 @@ re:		fclean all
 debug:
 	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME) -D DEBUG=1
 	./pipex file1 "tr a ' '" "tr ' ' b" file2
+
+debug2:
+	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME) -D DEBUG=1
+	./pipex here_doc OUT "tr a ' '" "tr ' ' b" file2
 
 run:
 	$(CC) $(CFLAGS) $(SRCS) libft.a -o $(NAME)

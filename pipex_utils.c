@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 05:59:47 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/03 14:23:15 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	cleanup(t_data data, int iserror)
 	if (iserror)
 	{
 		ft_putstr_fd(strerror(errno), 2);
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

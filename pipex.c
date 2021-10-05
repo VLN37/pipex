@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/09/29 05:55:01 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/02 10:40:53 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 void	wrathchild(t_data data, char **envp, int i)
 {
 	if (dup2(data.file_in, STDIN_FILENO) == -1)
-		cleanup(data, 1);
+		cleanup(data, EXIT_FAILURE);
 	if (!data.cmds[i + 1])
 	{
 		if(dup2(data.file_out, STDOUT_FILENO) == -1)
-			cleanup(data, 1);
+			cleanup(data, EXIT_FAILURE);
 	}
 	else
 	{
 		if(dup2(data.fd[1], STDOUT_FILENO) == -1)
-			cleanup(data, 1);
+			cleanup(data, EXIT_FAILURE);
 	}
 	if (i > 0)
 		close(data.fd[0]);
@@ -42,7 +42,7 @@ void	exec(t_data data, char **envp)
 		pipe(data.fd);
 		data.pid = fork();
 		if (data.pid == -1)
-			cleanup(data, 1);
+			cleanup(data, EXIT_FAILURE);
 		else if (data.pid == 0)
 			wrathchild(data, envp, i);
 		else
@@ -58,11 +58,9 @@ void	exec(t_data data, char **envp)
 char	**alloc_argv(int argc, char **argv)
 {
 	int		i;
-	int		j;
 	char	**new_argv;
 
 	i = -1;
-	j = -1;
 	new_argv = (char **)malloc(sizeof(char *) * argc - 3);
 	while (++i < argc - 3)
 		new_argv[i] = ft_strdup(argv[i + 2]);
@@ -78,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 
 	setbuf(stdout, NULL);
 	if (!validation(argc, envp))
-		return (1);
+		return (EXIT_FAILURE);
 	data.file_in = open(argv[1], O_RDWR);
 	data.file_out = open(argv[argc - 1], O_RDWR);
 	data.new_argv = alloc_argv(argc, argv);
@@ -86,5 +84,5 @@ int	main(int argc, char **argv, char **envp)
 	exec(data, envp);
 	if (DEBUG)
 		debug(data, argc, argv);
-	cleanup(data, 0);
+	cleanup(data, EXIT_SUCCESS);
 }

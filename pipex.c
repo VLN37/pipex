@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/02 10:40:53 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 08:36:54 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	wrathchild(t_data data, char **envp, int i)
 	}
 	if (i > 0)
 		close(data.fd[0]);
-	execve(data.accesspath[i], data.cmds[i], envp);
+	if (execve(data.accesspath[i], data.cmds[i], envp) == -1)
+		cleanup(data, EXIT_FAILURE);
 }
 
 void	exec(t_data data, char **envp)
@@ -66,7 +67,7 @@ char	**alloc_argv(int argc, char **argv)
 		new_argv[i] = ft_strdup(argv[i + 2]);
 	i = -1;
 	while (++i < argc - 3)
-		new_argv[i] = str_replace_all(new_argv[i], OLDPAT, NEWPAT);
+		new_argv[i] = ftex_str_replace_all(new_argv[i], OLDPAT, NEWPAT);
 	return (new_argv);
 }
 

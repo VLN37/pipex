@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/03 14:18:16 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 08:48:32 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	***parse_commands(int argc, char **argv, char ***cmds)
 		while (cmds[i][j])
 		{
 			if (!ft_strncmp(cmds[i][j], NEWPAT2, 18))
-				cmds[i][j] = str_replace(cmds[i][j], NEWPAT2, OLDPAT2);
+				cmds[i][j] = ftex_str_replace(cmds[i][j], NEWPAT2, OLDPAT2);
 			++j;
 		}
 		j = 0;
@@ -78,7 +78,7 @@ static char	*test_access(char **path, char *cmd)
 }
 
 //handle errors on line 92
-static char	**parse_access(char **path, char ***cmd, int cmd_count)
+static char	**parse_access(t_data data, char **path, char ***cmd, int cmd_count)
 {
 	int		i;
 	char	**accesspath;
@@ -88,8 +88,12 @@ static char	**parse_access(char **path, char ***cmd, int cmd_count)
 	while (cmd[i])
 	{
 		accesspath[i] = test_access(path, cmd[i][0]);
+		printf("%p\n", accesspath[i]);
 		if (!accesspath[i])
-			return (NULL);
+		{
+			printf("here\n");
+			cleanup(data, EXIT_FAILURE);
+		}
 		++i;
 	}
 	accesspath[i] = NULL;
@@ -100,6 +104,6 @@ t_data	parser(int argc, char **argv, char **envp, t_data data)
 {
 	data.cmds = parse_commands(argc, argv, data.cmds);
 	data.path = parse_path(envp);
-	data.accesspath = parse_access(data.path, data.cmds, argc - 3);
+	data.accesspath = parse_access(data, data.path, data.cmds, argc - 3);
 	return (data);
 }

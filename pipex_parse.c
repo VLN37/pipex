@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 08:48:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:56:52 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static char	*test_access(char **path, char *cmd)
 		else
 			free(bin);
 	}
-	return (NULL);
+	return (ft_strdup(""));
 }
 
 //handle errors on line 92
@@ -88,10 +88,10 @@ static char	**parse_access(t_data data, char **path, char ***cmd, int cmd_count)
 	while (cmd[i])
 	{
 		accesspath[i] = test_access(path, cmd[i][0]);
-		printf("%p\n", accesspath[i]);
-		if (!accesspath[i])
+		if (!accesspath[i][0])
 		{
-			printf("here\n");
+			accesspath[++i] = NULL;
+			data.accesspath = accesspath;
 			cleanup(data, EXIT_FAILURE);
 		}
 		++i;

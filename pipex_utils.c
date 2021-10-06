@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 09:24:36 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:56:00 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	free_allocs(t_data data)
 	while (data.path[i])
 		free(data.path[i++]);
 	i = 0;
+	printf("%p\n", data.accesspath[i]);
 	while (data.accesspath[i])
 		free(data.accesspath[i++]);
 	i = 0;
@@ -70,14 +71,16 @@ void	free_allocs(t_data data)
 	free(data.path);
 	free(data.accesspath);
 }
+
 void	cleanup(t_data data, int iserror)
 {
-	iserror = 1;
-	printf("here\n");
-	// if (iserror)
-	// {
-	// 	ft_putstr_fd(strerror(errno), 2);
-	// 	exit(EXIT_FAILURE);
-	// }
+	printf("here\n\n\n\n");
+	//printf("%p", data.accesspath[0]);
+	free_allocs(data);
+	if (iserror)
+	{
+		ft_putstr_fd(strerror(errno), 2);
+		exit(EXIT_FAILURE);
+	}
 	exit(EXIT_SUCCESS);
 }

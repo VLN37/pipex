@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 08:36:54 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:11:02 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	**alloc_argv(int argc, char **argv)
 	i = -1;
 	while (++i < argc - 3)
 		new_argv[i] = ftex_str_replace_all(new_argv[i], OLDPAT, NEWPAT);
+	new_argv[i] = NULL;
 	return (new_argv);
 }
 

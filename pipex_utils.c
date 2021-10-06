@@ -6,12 +6,18 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 11:01:52 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 11:24:24 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
+
+void	dup2_errorhandler(int dupvar1, int dupvar2, t_data data)
+{
+	if (dup2(dupvar1, dupvar2) == -1)
+		cleanup(data, EXIT_FAILURE);
+}
 
 void	debug(t_data data, int argc, char **argv)
 {
@@ -77,6 +83,7 @@ void	cleanup(t_data data, int iserror)
 	if (iserror)
 	{
 		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);

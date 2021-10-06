@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 10:33:24 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/06 11:24:23 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_data	parser(int argc, char **argv, char **envp, t_data data);
 int		validation(int argc, char **envp);
 void	debug(t_data data, int argc, char **argv);
 void	cleanup(t_data data, int iserror);
+void	dup2_errorhandler(int dupvar1, int dupvar2, t_data data);
 
 #endif

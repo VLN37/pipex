@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/06 11:23:53 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/23 10:34:42 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,14 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	setbuf(stdout, NULL);
+	data.file_in = open(argv[1], O_RDWR | O_CREAT, 0777);
+	if (data.file_in == -1)
+		return (EXIT_FAILURE);
+	data.file_out = open(argv[argc - 1], O_RDWR | O_CREAT, 0777);
+	if (data.file_out == -1)
+		return (EXIT_FAILURE);
 	if (!validation(argc, envp))
 		return (EXIT_FAILURE);
-	data.file_in = open(argv[1], O_RDWR);
-	data.file_out = open(argv[argc - 1], O_RDWR);
 	data.new_argv = alloc_argv(argc, argv);
 	data = parser(argc, data.new_argv, envp, data);
 	exec(data, envp);

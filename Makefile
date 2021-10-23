@@ -1,6 +1,7 @@
 DIR		= clang -C../tests
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror -g3
+HEADER	= pipex.h
 NAME	= pipex
 RM		= rm -f
 OBJ		= $(SRCS:.c=.o)
@@ -11,7 +12,7 @@ SRCS	= pipex.c \
 
 all:	$(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) libft.a -o $(NAME)
 
 .c.o:

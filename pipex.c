@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/23 10:34:42 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/23 11:18:48 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	wrathchild(t_data data, char **envp, int i)
 	if (i > 0)
 		close(data.fd[0]);
 	if (execve(data.accesspath[i], data.cmds[i], envp) == -1)
-		cleanup(data, EXIT_FAILURE);
+		cleanup(data, errno);
 }
 
 void	exec(t_data data, char **envp)
@@ -36,7 +36,7 @@ void	exec(t_data data, char **envp)
 		pipe(data.fd);
 		data.pid = fork();
 		if (data.pid == -1)
-			cleanup(data, EXIT_FAILURE);
+			cleanup(data, errno);
 		else if (data.pid == 0)
 			wrathchild(data, envp, i);
 		else
@@ -70,14 +70,14 @@ int	main(int argc, char **argv, char **envp)
 	t_data	data;
 
 	setbuf(stdout, NULL);
-	data.file_in = open(argv[1], O_RDWR | O_CREAT, 0777);
+	data.file_in = open(argv[1], O_RDWR, 0777);
 	if (data.file_in == -1)
-		return (EXIT_FAILURE);
+		cleanup(data, errno);
 	data.file_out = open(argv[argc - 1], O_RDWR | O_CREAT, 0777);
 	if (data.file_out == -1)
-		return (EXIT_FAILURE);
+		cleanup(data, errno);
 	if (!validation(argc, envp))
-		return (EXIT_FAILURE);
+		return (errno);
 	data.new_argv = alloc_argv(argc, argv);
 	data = parser(argc, data.new_argv, envp, data);
 	exec(data, envp);

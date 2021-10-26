@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:49:12 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/03 14:16:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/10/26 18:28:30 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	validate_envp(char **envp)
 
 int	validation(int argc, char **envp)
 {
-	if (argc < 5)
+	if (argc != 5)
 	{
-		ft_putstr_fd("Usage: ./pipex <file1> <cmd1> ... <cmdx> <file2>\n", 2);
+		ft_putstr_fd("Usage: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 2);
 		return (0);
 	}
 	if (!validate_envp(envp))

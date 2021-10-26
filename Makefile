@@ -1,7 +1,7 @@
 CC		= clang
 CFLAGS	= -Wall -Wextra -Werror -g3
 HEADER	= pipex.h
-BONUSHEADER	= bonus_pipex.h
+BONUSHEADER	= pipex_bonus.h
 BONUSNAME	= pipexbonus
 NAME	= pipex
 RM		= rm -f
@@ -16,10 +16,10 @@ SRCFILES		= pipex.c \
 				  pipex_validation.c \
 				  pipex_utils.c
 
-BONUSSRCFILES	= bonus_pipex.c \
-				  bonus_pipex_parse.c \
-				  bonus_pipex_utils.c \
-				  bonus_pipex_validation.c
+BONUSSRCFILES	= pipex_bonus.c \
+				  pipex_parse_bonus.c \
+				  pipex_utils_bonus.c \
+				  pipex_validation_bonus.c
 
 SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
 BONUSSRC= $(addprefix $(BONUSDIR)/, $(BONUSSRCFILES))

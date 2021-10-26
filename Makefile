@@ -42,7 +42,7 @@ $(BONUSNAME): $(BONUSOBJ) $(BONUSHEADER)
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
-$(OBJDIR)/%.o:	$(BONUSDIR)/%.c $(HEADER)
+$(OBJDIR)/%.o:	$(BONUSDIR)/%.c $(BONUSHEADER)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:

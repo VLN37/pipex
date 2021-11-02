@@ -31,6 +31,8 @@ all:	mkdir $(NAME)
 
 bonus:	mkdir $(BONUSNAME)
 
+complete: mkdir $(NAME) $(BONUSNAME)
+
 $(NAME): $(OBJ) $(HEADER)
 	make -C ./libft
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS)

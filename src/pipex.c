@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/23 11:18:48 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/08 14:58:46 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	wrathchild(t_data data, char **envp, int i)
 		dup2_errorhandler(data.file_out, STDOUT_FILENO, data);
 	else
 		dup2_errorhandler(data.fd[1], STDOUT_FILENO, data);
-	if (i > 0)
-		close(data.fd[0]);
+	close(data.fd[0]);
 	if (execve(data.accesspath[i], data.cmds[i], envp) == -1)
 		cleanup(data, errno);
 }

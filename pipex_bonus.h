@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/17 13:56:43 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:03:46 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PIPEX_BONUS_H
 
 # ifndef DEBUG
-#  define DEBUG 0
+#  define DEBUG 1
 # endif
 # define OLDPAT " ' '"
 # define NEWPAT " [0x69ROFLBRO0x69]"
@@ -36,10 +36,12 @@ typedef struct s_data
 	int		file_out;
 	int		fd[2];
 	int		pid;
+	int		heredoc;
 	char	**accesspath;
 	char	**path;
 	char	***cmds;
 	char	**new_argv;
+	char	*limiter;
 }	t_data;
 
 t_data	parser(int argc, char **argv, char **envp, t_data data);

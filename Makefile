@@ -66,7 +66,7 @@ debug2:
 	$(CC) $(CFLAGS) $(OBJ) libft.a -o $(NAME) -D DEBUG=1
 	./pipex here_doc OUT "tr a ' '" "tr ' ' b" file2
 
-run:
+run: $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	./pipex file1 "tr a ' '" "tr ' ' x" file2
 #	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2

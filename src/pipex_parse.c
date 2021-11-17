@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/23 11:08:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:03:38 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	***parse_commands(int argc, char **argv, char ***cmds)
 	int	j;
 
 	i = -1;
-	cmds = malloc(sizeof(char **) * argc - 3 + 1);
+	cmds = malloc(sizeof(char **) * (argc - 3 + 1));
 	while (++i < argc - 3)
 		cmds[i] = ft_split(argv[i], ' ');
 	cmds[i] = NULL;

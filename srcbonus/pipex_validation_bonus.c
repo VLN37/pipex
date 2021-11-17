@@ -6,11 +6,11 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:49:12 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/10/26 18:28:27 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:57:06 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include "libft.h"
 
 static int	validate_envp(char **envp)

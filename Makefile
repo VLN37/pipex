@@ -14,12 +14,14 @@ OBJDIR	= obj
 SRCFILES		= pipex.c \
 				  pipex_parse.c \
 				  pipex_validation.c \
-				  pipex_utils.c
+				  pipex_utils.c \
+				  pipex_exec.c \
 
 BONUSSRCFILES	= pipex_bonus.c \
 				  pipex_parse_bonus.c \
 				  pipex_utils_bonus.c \
-				  pipex_validation_bonus.c
+				  pipex_validation_bonus.c \
+				  pipex_exec_bonus.c \
 
 SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
 BONUSSRC= $(addprefix $(BONUSDIR)/, $(BONUSSRCFILES))

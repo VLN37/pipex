@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/11 10:06:39 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/17 20:03:18 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int		validation(int argc, char **envp);
 void	debug(t_data data, int argc, char **argv);
 void	cleanup(t_data data, int iserror);
 void	dup2_errorhandler(int dupvar1, int dupvar2, t_data data);
+void	exec(t_data data, char **envp);
 
 #endif

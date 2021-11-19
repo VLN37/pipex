@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/17 21:09:25 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 01:29:50 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void	debug(t_data data, int argc, char **argv)
 	int	i;
 	int	j;
 
+	(void)argc;
 	printf("\n============= PATH =============\n\n");
 	i = 0;
 	while (data.path[i])
 		printf("%s\n", data.path[i++]);
 	printf("\n============= ARGV =============\n\n");
-	i = 0;
-	while (++i < argc)
+	i = -1;
+	while (argv[++i])
 		printf("argv[%d] %s\n", i, argv[i]);
 	printf("\n============ ACCESS ============\n\n");
 	i = -1;
@@ -42,7 +43,7 @@ void	debug(t_data data, int argc, char **argv)
 	while (data.cmds[i])
 	{
 		while (data.cmds[i][j])
-			printf("%s\n", data.cmds[i][j++]);
+			printf("|%s|\n", data.cmds[i][j++]);
 		i++;
 		j = 0;
 	}

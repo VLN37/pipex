@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/17 20:03:18 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:16:36 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define PIPEX_H
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 # define OLDPAT " ' '"
 # define NEWPAT " [0x69ROFLBRO0x69]"
-# define OLDPAT2 "' '"
+# define OLDPAT2 " "
 # define NEWPAT2 "[0x69ROFLBRO0x69]"
 
 # include <stdio.h>

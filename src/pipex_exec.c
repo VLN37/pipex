@@ -6,35 +6,16 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 20:00:45 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 17:08:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:24:05 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "libft.h"
 
-void	print_matrix(char ***cmd)
-{
-	int	i;
-	int	j;
-
-
-	setbuf(stdout, NULL);
-	i = -1;
-	j = -1;
-	while (cmd[++i])
-	{
-		ftex_minprintf("===== COMMAND %d ======\n\n", i + 1);
-		while (cmd[i][++j])
-			ftex_minprintf("%s|\n", cmd[i][j]);
-		j = -1;
-	}
-}
-
 void	wrathchild(t_data data, char **envp, int i)
 {
 	dup2_errorhandler(data.file_in, STDIN_FILENO, data);
-	print_matrix(data.cmds);
 	if (!data.cmds[i + 1])
 		dup2_errorhandler(data.file_out, STDOUT_FILENO, data);
 	else

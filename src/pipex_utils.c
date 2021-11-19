@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 01:29:50 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:23:11 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,26 @@ void	debug(t_data data, int argc, char **argv)
 	int	j;
 
 	(void)argc;
-	printf("\n============= PATH =============\n\n");
+	ftex_minprintf("\n============= PATH =============\n\n");
 	i = 0;
 	while (data.path[i])
-		printf("%s\n", data.path[i++]);
-	printf("\n============= ARGV =============\n\n");
+		ftex_minprintf("%s\n", data.path[i++]);
+	ftex_minprintf("\n============= ARGV =============\n\n");
 	i = -1;
 	while (argv[++i])
-		printf("argv[%d] %s\n", i, argv[i]);
-	printf("\n============ ACCESS ============\n\n");
+		ftex_minprintf("argv[%d] %s\n", i, argv[i]);
+	ftex_minprintf("\n============ ACCESS ============\n\n");
 	i = -1;
 	while (data.cmds[++i])
-		printf("Cmd: %s\nAccess: %s\n", data.cmds[i][0], data.accesspath[i]);
-	printf("\n=========== COMMANDS ===========\n\n");
-	i = 0;
-	j = 0;
-	while (data.cmds[i])
+		ftex_minprintf("Cm: %s\nAc: %s\n", data.cmds[i][0], data.accesspath[i]);
+	ftex_minprintf("\n=========== COMMANDS ===========\n\n");
+	i = -1;
+	j = -1;
+	while (data.cmds[++i])
 	{
-		while (data.cmds[i][j])
-			printf("|%s|\n", data.cmds[i][j++]);
-		i++;
-		j = 0;
+		while (data.cmds[i][++j])
+			ftex_minprintf("|%s|\n", data.cmds[i][j]);
+		j = -1;
 	}
 }
 

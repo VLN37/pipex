@@ -61,12 +61,12 @@ fclean: clean
 re:		fclean all
 
 debug:
-	$(CC) $(CFLAGS) $(OBJ) libft.a -o $(NAME) -D DEBUG=1
+	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
 	./pipex file1 "tr a ' '" "tr ' ' b" file2
 
 debug2:
-	$(CC) $(CFLAGS) $(OBJ) libft.a -o $(NAME) -D DEBUG=1
-	./pipex here_doc OUT "tr a ' '" "tr ' ' b" file2
+	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
+	./pipexbonus here_doc OUT "tr a ' '" "tr ' ' b" file2
 
 run: $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)

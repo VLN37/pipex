@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 01:29:41 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:29:32 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	setbuf(stdout, NULL);
 	data.file_in = open(argv[1], O_RDWR, 0777);
 	if (data.file_in == -1)
 		cleanup(data, errno);

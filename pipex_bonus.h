@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 17:23:51 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:27:26 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define NEWPAT " [0x69ROFLBRO0x69]"
 # define OLDPAT2 " "
 # define NEWPAT2 "[0x69ROFLBRO0x69]"
-
-# include <stdio.h>
 
 # include <string.h>
 # include <errno.h>

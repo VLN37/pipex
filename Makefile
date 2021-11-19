@@ -65,7 +65,7 @@ debug:
 	./pipex file1 "tr a ' '" "tr ' ' b" file2
 
 debug2:
-	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
+	$(CC) $(CFLAGS) $(BONUSOBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
 	./pipexbonus here_doc OUT "tr a ' '" "tr ' ' b" file2
 
 run: $(HEADER)
@@ -78,7 +78,7 @@ runf:
 	./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
 
 runv:
-	$(CC) $(CFLAGS) $(SRCS) ./libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	valgrind ./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
 
 mkdir:

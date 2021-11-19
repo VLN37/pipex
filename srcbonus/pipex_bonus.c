@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 17:20:58 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:29:12 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	setbuf(stdout, NULL);
 	if (!ft_strncmp(argv[1], "here_doc", 8))
 		here_doc_handler(argv, &data);
 	else

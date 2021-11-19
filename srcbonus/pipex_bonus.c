@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/17 20:17:28 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 01:24:43 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	here_doc_handler(char **argv, t_data *data)
 void	standard_handler(char **argv, t_data *data)
 {
 	data->heredoc = 0;
-	data->file_in = open(argv[1], O_RDWR, 0777);
+	data->file_in = open(argv[1], O_RDONLY, 0777);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -88,7 +88,8 @@ int	main(int argc, char **argv, char **envp)
 		standard_handler(argv, &data);
 	if (data.file_in == -1)
 		cleanup(data, errno);
-	data.file_out = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0777);
+	data.file_out = open(argv[argc - 1], O_WRONLY| O_CREAT
+			| O_TRUNC * !(data.heredoc) | O_APPEND * (data.heredoc), 0777);
 	if (data.file_out == -1)
 		cleanup(data, errno);
 	if (!validation(argc, envp))
@@ -100,6 +101,6 @@ int	main(int argc, char **argv, char **envp)
 	data = parser(argc, data.new_argv, envp, data);
 	exec(data, envp);
 	if (DEBUG)
-		debug(data, argc, argv);
+		debug(data, argc, data.new_argv);
 	cleanup(data, EXIT_SUCCESS);
 }

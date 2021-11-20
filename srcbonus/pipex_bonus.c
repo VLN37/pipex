@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 23:16:14 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 23:20:06 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ void	here_doc_handler(char **argv, t_data *data)
 	tmp = NULL;
 	line = ft_strdup("");
 	data->heredoc = 1;
-	data->limiter = ftex_strmerge(ft_strdup(argv[2]), ft_strdup("\n"));
 	while (1)
 	{
 		tmp = get_next_line(STDIN_FILENO);
-		if (!ft_strncmp(tmp, data->limiter, ft_strlen(data->limiter)))
+		if (!ft_strncmp(tmp, argv[2], ft_strlen(argv[2])))
 			break ;
 		line = ftex_strmerge(line, tmp);
 	}
@@ -81,14 +80,14 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	data.file_out = open(argv[argc - 1], O_WRONLY | O_CREAT
-			| O_TRUNC * !(data.heredoc) | O_APPEND * (data.heredoc), 0777);
-	if (data.file_out == -1)
-		return (1);
 	if (ft_strncmp(argv[1], "here_doc", 8))
 		standard_handler(argv, &data);
 	else
 		here_doc_handler(argv, &data);
+	data.file_out = open(argv[argc - 1], O_WRONLY | O_CREAT
+			| O_TRUNC * !(data.heredoc) | O_APPEND * (data.heredoc), 0777);
+	if (data.file_out == -1)
+		return (1);
 	if (data.file_in == -1)
 		return (1);
 	if (!validation(argc, envp))

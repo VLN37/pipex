@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 17:29:32 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 23:14:57 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	data.file_in = open(argv[1], O_RDWR, 0777);
+	data.file_in = open(argv[1], O_RDONLY, 0777);
 	if (data.file_in == -1)
-		cleanup(data, errno);
+		return (1);
 	data.file_out = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0777);
 	if (data.file_out == -1)
-		cleanup(data, errno);
+		return (1);
 	if (!validation(argc, envp))
 		return (errno);
 	data.new_argv = alloc_argv(argc, argv);

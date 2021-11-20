@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 17:29:12 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/19 23:16:14 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,16 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
-	if (!ft_strncmp(argv[1], "here_doc", 8))
-		here_doc_handler(argv, &data);
-	else
-		standard_handler(argv, &data);
-	if (data.file_in == -1)
-		cleanup(data, errno);
 	data.file_out = open(argv[argc - 1], O_WRONLY | O_CREAT
 			| O_TRUNC * !(data.heredoc) | O_APPEND * (data.heredoc), 0777);
 	if (data.file_out == -1)
-		cleanup(data, errno);
+		return (1);
+	if (ft_strncmp(argv[1], "here_doc", 8))
+		standard_handler(argv, &data);
+	else
+		here_doc_handler(argv, &data);
+	if (data.file_in == -1)
+		return (1);
 	if (!validation(argc, envp))
 		return (errno);
 	if (data.heredoc)

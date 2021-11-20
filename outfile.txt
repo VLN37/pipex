@@ -1,0 +1,1 @@
+rxx min/avg/max/mdev = 4.257/4.468/4.738/0.200 ms

@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 04:53:04 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/12/01 13:01:15 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:32:42 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ void	free_allocs(t_data data)
 void	cleanup(t_data data, int iserror)
 {
 	free_allocs(data);
+	if (iserror == 127)
+	{
+		ft_putstr_fd("Command not found\n", 2);
+		exit(iserror);
+	}
 	if (iserror)
 	{
 		ft_putstr_fd(strerror(iserror), 2);

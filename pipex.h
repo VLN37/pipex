@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/12/01 12:56:10 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:33:20 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 # define OLDPAT2 " "
 # define NEWPAT2 "[0x69ROFLBRO0x69]"
 
-# include <string.h>
+# include <stdio.h>
 # include <errno.h>
-# include <unistd.h>
+# include <string.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include <stdlib.h>
 
 typedef struct s_data
 {

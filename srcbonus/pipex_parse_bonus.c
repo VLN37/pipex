@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 20:55:36 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 01:10:04 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:34:56 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static char	**parse_access(t_data data, char **path, char ***cmd, int cmd_count)
 		{
 			accesspath[++i] = NULL;
 			data.accesspath = accesspath;
-			cleanup(data, errno);
+			cleanup(data, 127);
 		}
 		++i;
 	}

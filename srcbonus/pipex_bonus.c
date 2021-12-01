@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/19 23:20:06 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/11/25 22:47:35 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 
+	if (!validation(argc, envp))
+		return (1);
 	if (ft_strncmp(argv[1], "here_doc", 8))
 		standard_handler(argv, &data);
 	else
@@ -90,8 +92,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (data.file_in == -1)
 		return (1);
-	if (!validation(argc, envp))
-		return (errno);
 	if (data.heredoc)
 		data.new_argv = alloc_argv_heredoc(argc, argv);
 	else

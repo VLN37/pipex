@@ -28,12 +28,11 @@ BONUSSRC= $(addprefix $(BONUSDIR)/, $(BONUSSRCFILES))
 OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 BONUSOBJ= $(BONUSSRC:$(BONUSDIR)/%.c=$(OBJDIR)/%.o)
 
+all:	$(OBJDIR) $(NAME)
 
-all:	mkdir $(NAME)
+bonus:	$(OBJDIR) $(BONUSNAME)
 
-bonus:	mkdir $(BONUSNAME)
-
-complete: mkdir $(NAME) $(BONUSNAME)
+complete: $(OBJDIR) $(NAME) $(BONUSNAME)
 
 $(NAME): $(OBJ) $(HEADER)
 	make -C ./libft
@@ -71,7 +70,6 @@ debug2:
 run: $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	./pipex file1 "tr a ' '" "tr ' ' x" file2
-#	./a.out file1 "grep reprehen" "tr ' ' '\n'" file2
 
 runf:
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -fsanitize=address -g3
@@ -81,5 +79,5 @@ runv:
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	valgrind ./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
 
-mkdir:
+$(OBJDIR):
 	mkdir -p obj

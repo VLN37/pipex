@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 00:51:03 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/12/01 17:32:54 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:47:22 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@
 
 # include <string.h>
 # include <errno.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_data
 {

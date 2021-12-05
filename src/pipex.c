@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/25 22:47:30 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/05 11:19:31 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	**alloc_argv(int argc, char **argv)
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	int		exit_code;
 
 	if (!validation(argc, envp))
 		return (1);
@@ -45,6 +46,6 @@ int	main(int argc, char **argv, char **envp)
 	data = parser(argc, data.new_argv, envp, data);
 	if (DEBUG == 1)
 		debug(data, argc, data.new_argv);
-	exec(data, envp);
-	cleanup(data, EXIT_SUCCESS);
+	exit_code = exec(data, envp);
+	cleanup(data, exit_code);
 }

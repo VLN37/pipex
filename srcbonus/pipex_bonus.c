@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:17:58 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/11/25 22:47:35 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/05 11:40:39 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	standard_handler(char **argv, t_data *data)
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
+	int		exit_code;
 
 	if (!validation(argc, envp))
 		return (1);
@@ -97,8 +98,6 @@ int	main(int argc, char **argv, char **envp)
 	else
 		data.new_argv = alloc_argv(argc, argv);
 	data = parser(argc, data.new_argv, envp, data);
-	exec(data, envp);
-	if (DEBUG)
-		debug(data, argc, data.new_argv);
-	cleanup(data, EXIT_SUCCESS);
+	exit_code = exec(data, envp);
+	cleanup(data, exit_code);
 }

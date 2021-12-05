@@ -6,7 +6,7 @@
 /*   By: jofelipe <jofelipe@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:59:28 by jofelipe          #+#    #+#             */
-/*   Updated: 2021/12/01 12:56:31 by jofelipe         ###   ########.fr       */
+/*   Updated: 2021/12/05 11:40:55 by jofelipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ static void	wrathchild(t_data data, char **envp, int i)
 		cleanup(data, errno);
 }
 
-void	exec(t_data data, char **envp)
+int	exec(t_data data, char **envp)
 {
 	int	i;
+	int	exit_code;
 
 	i = 0;
+	exit_code = 0;
 	while (data.cmds[i])
 	{
 		pipe(data.fd);
@@ -41,10 +43,12 @@ void	exec(t_data data, char **envp)
 			wrathchild(data, envp, i);
 		else
 		{
-			wait(NULL);
+			waitpid(data.pid, &exit_code, WNOHANG);
+			exit_code = WEXITSTATUS(exit_code);
 			close(data.fd[1]);
 			data.file_in = data.fd[0];
 			i++;
 		}
 	}
+	return (exit_code);
 }

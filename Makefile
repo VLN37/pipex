@@ -1,8 +1,12 @@
+LIBFTDIR= ./libft
+LIBFT	= $(LIBFTDIR)/libft.a
+
+MKLIBFT	= make -C ./libft
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror -g3
 HEADER	= pipex.h
 BONUSHEADER	= pipex_bonus.h
-BONUSNAME	= pipexbonus
+BONUSNAME	= pipex_bonus
 NAME	= pipex
 RM		= rm -f
 INCLUDES= -I./libft -I./
@@ -34,12 +38,10 @@ bonus:	$(OBJDIR) $(BONUSNAME)
 
 complete: $(OBJDIR) $(NAME) $(BONUSNAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	make -C ./libft
+$(NAME): $(LIBFT) $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS)
 
-$(BONUSNAME): $(BONUSOBJ) $(BONUSHEADER)
-	make -C ./libft
+$(BONUSNAME): $(LIBFT) $(BONUSOBJ) $(BONUSHEADER)
 	$(CC) $(CFLAGS) $(BONUSOBJ) -o $(BONUSNAME) $(LINKS)
 
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
@@ -47,6 +49,9 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
 
 $(OBJDIR)/%.o:	$(BONUSDIR)/%.c $(BONUSHEADER)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+
+$(LIBFT):
+	make -C ./libft
 
 clean:
 	make -C ./libft clean
@@ -58,14 +63,6 @@ fclean: clean
 	$(RM) $(NAME) $(BONUSNAME)
 
 re:		fclean all
-
-debug:
-	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
-	./pipex file1 "tr a ' '" "tr ' ' b" file2
-
-debug2:
-	$(CC) $(CFLAGS) $(BONUSOBJ) ./libft/libft.a -o $(NAME) -D DEBUG=1
-	./pipexbonus here_doc OUT "tr a ' '" "tr ' ' b" file2
 
 run: $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)

@@ -15,8 +15,6 @@ or, with user input:
 
 `<< limiter cmd1 | ... | cmdx > fileout`
 
-
-
 - - -
 
 ## What i learned?
@@ -37,7 +35,7 @@ This opens us many avenues, breaking away from the constraints of our C program,
 
 ## Requirements
 
-* linux system with GCC and bash
+* linux system with GCC and bash (it doesn't work in zsh due to how the quotes are handled)
 
 ## How to use
 
@@ -49,10 +47,12 @@ Compile the program with:
 
 `make`
 
-Run with any command and files you want, in the format below. Some examples are:
+Run the program in the format below. Some examples are:
 
 `./pipex .gitignore "tr a b" "tr b c" "tr c d" outfile`
+
 `./pipex EOF "tr a b" "tr b c" outfile`
+
 `./pipex .gitignore "ping 8.8.8.8" "grep ms" outfile`
 
 Or any unix command you want!

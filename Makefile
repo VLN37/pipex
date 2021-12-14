@@ -32,6 +32,8 @@ BONUSSRC= $(addprefix $(BONUSDIR)/, $(BONUSSRCFILES))
 OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 BONUSOBJ= $(BONUSSRC:$(BONUSDIR)/%.c=$(OBJDIR)/%.o)
 
+VPATH	= src srcbonus
+
 all:	$(OBJDIR) $(NAME)
 
 bonus:	$(OBJDIR) $(BONUSNAME)
@@ -44,10 +46,7 @@ $(NAME): $(LIBFT) $(OBJ) $(HEADER)
 $(BONUSNAME): $(LIBFT) $(BONUSOBJ) $(BONUSHEADER)
 	$(CC) $(CFLAGS) $(BONUSOBJ) -o $(BONUSNAME) $(LINKS)
 
-$(OBJDIR)/%.o:	$(SRCDIR)/%.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
-
-$(OBJDIR)/%.o:	$(BONUSDIR)/%.c $(BONUSHEADER)
+$(OBJDIR)/%.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 $(LIBFT):

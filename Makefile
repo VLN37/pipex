@@ -21,30 +21,17 @@ SRCFILES		= pipex.c \
 				  pipex_utils.c \
 				  pipex_exec.c \
 
-BONUSSRCFILES	= pipex_bonus.c \
-				  pipex_parse_bonus.c \
-				  pipex_utils_bonus.c \
-				  pipex_validation_bonus.c \
-				  pipex_exec_bonus.c \
-
 SRC		= $(addprefix $(SRCDIR)/, $(SRCFILES))
-BONUSSRC= $(addprefix $(BONUSDIR)/, $(BONUSSRCFILES))
 OBJ		= $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-BONUSOBJ= $(BONUSSRC:$(BONUSDIR)/%.c=$(OBJDIR)/%.o)
 
-VPATH	= src srcbonus
+VPATH	= src
 
 all:	$(OBJDIR) $(NAME)
-
-bonus:	$(OBJDIR) $(BONUSNAME)
 
 complete: $(OBJDIR) $(NAME) $(BONUSNAME)
 
 $(NAME): $(LIBFT) $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LINKS)
-
-$(BONUSNAME): $(LIBFT) $(BONUSOBJ) $(BONUSHEADER)
-	$(CC) $(CFLAGS) $(BONUSOBJ) -o $(BONUSNAME) $(LINKS)
 
 $(OBJDIR)/%.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
@@ -66,14 +53,6 @@ re:		fclean all
 run: $(HEADER)
 	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	./pipex file1 "tr a ' '" "tr ' ' x" file2
-
-runf:
-	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME) -fsanitize=address -g3
-	./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
-
-runv:
-	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
-	valgrind ./pipex file1 "tr a ' '" "tr ' ' 'x'" file2
 
 $(OBJDIR):
 	mkdir -p obj
